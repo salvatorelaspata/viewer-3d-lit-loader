@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viewer 3d Lit Loader</title>
+    <style>
+      body {
+        font-family: monospace;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+        justify-items: center;
+        height: 100%;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-BBGP7x-Z.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DaTnXPy2.css">
+  </head>
+  <body>
+    <div style="display: flex; align-items: center;">
+    <h1>Viewer 3d Lit Loader</h1><span>refresh the page the color is random 🌈</span>
+  </div>
+    <div id="container">
+      <viewer-3d-lit-loader style="border: white 1px solid;" color="0xffffff" width="400" height="400"></viewer-3d-lit-loader>
+      <!-- Viewer 3d Lit Loader will be injected here -->
+    </div>
+  </body>
+  <script defer>
+    const container = document.querySelector('#container');
+    for (let i = 0; i < 15; i++) {
+      const viewer = document.createElement('viewer-3d-lit-loader');
+      // generate random hex color
+      viewer.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      viewer.width = 400;
+      viewer.height = 400;
+      container.appendChild(viewer);
+    }  
+  </script>
+</html>
