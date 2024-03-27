@@ -1,5 +1,7 @@
 # Viewer 3d Lit Loader
 
+(Demo)[https://salvatorelaspata.github.io/viewer-3d-lit-loader/]
+
 This is a simple loading component to show an amazing cube. It is a simple example to show how to use the `LitElement` to create a web component. The 3d model is created using the `three.js` library.
 
 ## How to use
