@@ -19,8 +19,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:ghpages": "tsc && vite build --config vite.config.ghpages.js ",
     "preview": "vite preview",
-    "deploy": "gh-pages -d ."
+    "predeploy": "npm run build:ghpages",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "gsap": "^3.12.5",
