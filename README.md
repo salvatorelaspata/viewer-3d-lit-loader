@@ -22,7 +22,7 @@ Then, you can use the component in your HTML file:
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Viewer 3d Lit Loader</title>
-        <script type="module" src="node_modules/viewer-3d-lit-loader/viewer-3d-lit-loader.js"></script>
+        <script type="module" src="./node_modules/viewer-3d-lit-loader/dist/viewer-3d-lit-loader.js"></script>
     </head>
     <body>
         <viewer-3d-lit-loader
