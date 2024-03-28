@@ -14,7 +14,7 @@ export class Viewer3dLitLoader extends LitElement {
   height = 200
 
   @property({ type: Number })
-  color = 0x00ff00
+  color = 0xffffff
 
   protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
     scene(this.canvas, this.color)
