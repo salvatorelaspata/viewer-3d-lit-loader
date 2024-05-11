@@ -28,7 +28,9 @@ Then, you can use the component in your HTML file:
         <viewer-3d-lit-loader
             width="400"
             height="400"
-            color="0xffffff"    
+            lightColor="0xffffff"
+            cubeColor="0x000000"
+            bgColor="0x000000"
         ></viewer-3d-lit-loader>
     </body>
 </html>
@@ -40,7 +42,13 @@ The component has the following properties:
 
 - `width`: The width of the component. Default is `400`.
 - `height`: The height of the component. Default is `400`.
-- `color`: The hex color of the cube. Default is `0xffffff`.
+- `lightColor`: (optional) The hex color of the light. Default is `#ffffff`.
+- `cubeColor`: (optional) The hex color of the cube. Default is `#000000`.
+- `bgColor`: (optional) The hex color of the background. Default is `#000000`.
+- `noAnimation`: (optional) The cube does not rotate. Default is `false`.
+- `bgTransparent`: (optional) The background is transparent. Default is `false`.
+
+>  Note: If you want to use the `bgTransparent` the `bgColor` is ignored.
 
 ## Reference
 

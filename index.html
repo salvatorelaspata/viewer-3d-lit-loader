@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,23 +24,31 @@
     </style>
   </head>
   <body>
-    <div style="display: flex; align-items: center;">
-    <h1>Viewer 3d Lit Loader</h1><span>refresh the page the color is random 🌈</span>
-  </div>
+    <div style="display: flex; align-items: center">
+      <h1>Viewer 3d Lit Loader</h1>
+      <span style="margin-left: 1rem;">refresh the page the color is random 🌈</span>
+    </div>
     <div id="container">
-      <viewer-3d-lit-loader style="border: white 1px solid;" color="0xffffff" width="400" height="400"></viewer-3d-lit-loader>
+      <viewer-3d-lit-loader
+        style="border: white 1px solid"
+        bgTransparent
+        width="400"
+        height="400"
+      ></viewer-3d-lit-loader>
       <!-- Viewer 3d Lit Loader will be injected here -->
     </div>
   </body>
   <script defer>
-    const container = document.querySelector('#container');
+    const container = document.querySelector("#container");
     for (let i = 0; i < 15; i++) {
-      const viewer = document.createElement('viewer-3d-lit-loader');
+      const viewer = document.createElement("viewer-3d-lit-loader");
       // generate random hex color
-      viewer.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      viewer.lightColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      viewer.cubeColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      viewer.bgColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
       viewer.width = 400;
       viewer.height = 400;
       container.appendChild(viewer);
-    }  
+    }
   </script>
 </html>

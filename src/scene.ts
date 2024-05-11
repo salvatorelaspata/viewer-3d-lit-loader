@@ -40,7 +40,7 @@ const animateScene = (latoDestro: THREE.Mesh[],latoSinistro: THREE.Mesh[],latoSu
         toRandom(cube, cube.position, 'z', true)
     })
 }
-const composeScene = (scene: THREE.Scene, color: number = 0xffffff) => {
+const composeScene = (scene: THREE.Scene, lightColor: string = "#ffffff", cubeColor: string = "#ffffff", bgTransparent: boolean = false) => {
     const group = new THREE.Group()
 
     // const geometryMain = new THREE.BoxGeometry(MAIN_CUBE,MAIN_CUBE,MAIN_CUBE)
@@ -61,8 +61,8 @@ const composeScene = (scene: THREE.Scene, color: number = 0xffffff) => {
         ior: 1,
         thickness: 0.01,
         specularIntensity: 0.1,
-        color: new THREE.Color(0xffffff),
-        specularColor: new THREE.Color(0xffffff),
+        color: bgTransparent ? new THREE.Color(cubeColor) : new THREE.Color(lightColor),
+        specularColor: new THREE.Color(cubeColor),
         envMapIntensity: 1,
     })
 
@@ -129,19 +129,19 @@ const composeScene = (scene: THREE.Scene, color: number = 0xffffff) => {
         }
     }
 
-    const positionLight = new THREE.PointLight(color, 1_000_000, 0, 0.01)
+    const positionLight = new THREE.PointLight(lightColor, 1_000_000, 100, 0)
     positionLight.position.set(0,0,0)
     group.add(positionLight)
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.1)
-    group.add(ambient)
-
+    // const ambient = new THREE.AmbientLight(0x404040)
+    // group.add(ambient)
     scene.add(group)
 
     return {group, latoDestro, latoSinistro, latoSuperiore, latoInferiore, latoFrontale, latoPosteriore}
 }
 
-export const scene = (ref: HTMLCanvasElement, color: number) => {
+export const scene = (ref: HTMLCanvasElement, lightColor: string, cubeColor: string, bgColor: string, bgTransparent: boolean, noAnimation: boolean
+) => {
     const WIDTH = ref.clientWidth // || ref.clientWidth
     const HEIGHT = ref.clientHeight // || ref.clientHeight
     console.log('Scene - useEffect')
@@ -156,9 +156,12 @@ export const scene = (ref: HTMLCanvasElement, color: number) => {
     camera.position.z = 4
     camera.position.x = -20
 
-    const renderer = new THREE.WebGLRenderer({canvas: ref})
-    // set clean color dark dark gray
-    renderer.setClearColor(0x000000)
+    const renderer = new THREE.WebGLRenderer({ canvas: ref })
+
+    // bgTransparent overrides bgColor
+    if (bgTransparent) renderer.setClearColor(0x000000, bgTransparent ? 0 : 1)
+    else if(bgColor) renderer.setClearColor(bgColor)
+
     renderer.setSize(WIDTH, HEIGHT)
 
     const controls = new OrbitControls(camera, renderer.domElement)
@@ -170,7 +173,7 @@ export const scene = (ref: HTMLCanvasElement, color: number) => {
 
 
     const { group, latoDestro, latoSinistro, latoSuperiore, latoInferiore, latoFrontale, latoPosteriore } 
-        = composeScene(scene, color)
+        = composeScene(scene, lightColor, cubeColor, bgTransparent)
 
     window.addEventListener('resize', onWindowResize, false)
 
@@ -184,9 +187,10 @@ export const scene = (ref: HTMLCanvasElement, color: number) => {
     }
 
     function render() {
-        group.rotation.x += 0.005
-        group.rotation.y += 0.005
-
+        if(!noAnimation) {
+            group.rotation.x += 0.005
+            group.rotation.y += 0.005
+        }
         renderer.render(scene, camera)
     }
 
