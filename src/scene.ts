@@ -144,7 +144,7 @@ export const scene = (ref: HTMLCanvasElement, lightColor: string, cubeColor: str
 ) => {
     const WIDTH = ref.clientWidth // || ref.clientWidth
     const HEIGHT = ref.clientHeight // || ref.clientHeight
-    console.log('Scene - useEffect')
+    // console.log('Scene - useEffect')
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(
         75,
@@ -178,7 +178,7 @@ export const scene = (ref: HTMLCanvasElement, lightColor: string, cubeColor: str
     window.addEventListener('resize', onWindowResize, false)
 
     function onWindowResize() {
-        console.log('onWindowResize')
+        // console.log('onWindowResize')
 
         camera.aspect = ref.clientWidth / ref.clientHeight 
         camera.updateProjectionMatrix()

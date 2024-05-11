@@ -29,7 +29,7 @@ export class Viewer3dLitLoader extends LitElement {
   bgTransparent = false
 
   protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    console.log('firstUpdated', this.canvas, this.lightColor, this.cubeColor, this.bgColor, this.bgTransparent, this.noAnimation)
+    // console.log('firstUpdated', this.canvas, this.lightColor, this.cubeColor, this.bgColor, this.bgTransparent, this.noAnimation)
     scene(this.canvas, this.lightColor, this.cubeColor, this.bgColor, this.bgTransparent, this.noAnimation)
   }
 
