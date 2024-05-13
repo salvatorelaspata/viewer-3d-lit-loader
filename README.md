@@ -44,11 +44,14 @@ The component has the following properties:
 - `height`: The height of the component. Default is `400`.
 - `lightColor`: (optional) The hex color of the light. Default is `#ffffff`.
 - `cubeColor`: (optional) The hex color of the cube. Default is `#000000`.
-- `bgColor`: (optional) The hex color of the background. Default is `#000000`.
+- `bgColor`: (optional) The hex color of the background. Default is `#000000`. (1)
 - `noAnimation`: (optional) The cube does not rotate. Default is `false`.
-- `bgTransparent`: (optional) The background is transparent. Default is `false`.
+- `bgTransparent`: (optional) The background is transparent. Default is `false`. (1)
+- `fullContent`: (optional) The component takes the full width and height of the parent. Default is `false`. (2)
 
->  Note: If you want to use the `bgTransparent` the `bgColor` is ignored.
+>  Note(1): If you want to use the `bgTransparent` the `bgColor` properties are ignored.
+
+> Note(2): If you want to use the `fullContent` the `width` and `height` properties are ignored.
 
 ## Reference
 

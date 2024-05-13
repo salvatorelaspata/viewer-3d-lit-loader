@@ -2,16 +2,19 @@ import { LitElement, PropertyValueMap, css, html } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
 import { scene } from './scene'
 
+const DEFAULT_WIDTH = 200
+const DEFAULT_HEIGHT = 200
+
 @customElement('viewer-3d-lit-loader')
 export class Viewer3dLitLoader extends LitElement {
   @query(`canvas`)
   canvas!: HTMLCanvasElement
 
   @property({ type: Number })
-  width = 200
+  width = 0
 
   @property({ type: Number })
-  height = 200
+  height = 0
 
   @property({ type: String })
   lightColor = '#ffffff'
@@ -28,12 +31,25 @@ export class Viewer3dLitLoader extends LitElement {
   @property({ type: Boolean })
   bgTransparent = false
 
+  @property({ type: Boolean })
+  fullContent = false
+
   protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    // console.log('firstUpdated', this.canvas, this.lightColor, this.cubeColor, this.bgColor, this.bgTransparent, this.noAnimation)
     scene(this.canvas, this.lightColor, this.cubeColor, this.bgColor, this.bgTransparent, this.noAnimation)
   }
 
   render() {
+    if(this.fullContent) {
+      const parent = this.parentElement
+      if(parent){
+        this.width ||= parent.clientWidth || DEFAULT_WIDTH
+        this.height ||= parent.clientHeight || DEFAULT_HEIGHT
+      }
+    } else {
+      this.width ||= DEFAULT_WIDTH
+      this.height ||= DEFAULT_HEIGHT
+    }
+
     return html`<canvas width="${this.width}" height="${this.height}"></canvas>`
   }
 
