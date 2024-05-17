@@ -53,6 +53,8 @@ The component has the following properties:
 
 > Note(2): If you want to use the `fullContent` the `width` and `height` properties are ignored.
 
+> Warning: The `fullContent` property cause expansive computation. Use it carefully.
+
 ## Reference
 
 - [LitElement](https://lit.dev/docs/components/)

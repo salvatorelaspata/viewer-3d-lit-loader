@@ -140,7 +140,7 @@ const composeScene = (scene: THREE.Scene, lightColor: string = "#ffffff", cubeCo
     return {group, latoDestro, latoSinistro, latoSuperiore, latoInferiore, latoFrontale, latoPosteriore}
 }
 
-export const scene = (ref: HTMLCanvasElement, lightColor: string, cubeColor: string, bgColor: string, bgTransparent: boolean, noAnimation: boolean
+export const scene = (ref: HTMLCanvasElement, lightColor: string, cubeColor: string, bgColor: string, bgTransparent: boolean, noAnimation: boolean, fullContent: boolean
 ) => {
     const WIDTH = ref.clientWidth // || ref.clientWidth
     const HEIGHT = ref.clientHeight // || ref.clientHeight
@@ -155,8 +155,7 @@ export const scene = (ref: HTMLCanvasElement, lightColor: string, cubeColor: str
     
     camera.position.z = 4
     camera.position.x = -20
-
-    const renderer = new THREE.WebGLRenderer({ canvas: ref })
+    let renderer = new THREE.WebGLRenderer({ canvas: ref })
 
     // bgTransparent overrides bgColor
     if (bgTransparent) renderer.setClearColor(0x000000, bgTransparent ? 0 : 1)
@@ -171,18 +170,18 @@ export const scene = (ref: HTMLCanvasElement, lightColor: string, cubeColor: str
     controls.enableDamping = true
     controls.dampingFactor = 0.25
 
-
     const { group, latoDestro, latoSinistro, latoSuperiore, latoInferiore, latoFrontale, latoPosteriore } 
         = composeScene(scene, lightColor, cubeColor, bgTransparent)
 
     window.addEventListener('resize', onWindowResize, false)
 
     function onWindowResize() {
-        // console.log('onWindowResize')
-
-        camera.aspect = ref.clientWidth / ref.clientHeight 
+        // console.log('onWindowResize', ref.clientWidth, ref.clientHeight, ref.width, ref.height, ref.parentElement?.clientWidth, ref.parentElement?.clientHeight )
+        const _width = fullContent ? ref.width : ref.clientWidth
+        const _height = fullContent ? ref.height : ref.clientHeight
+        camera.aspect = _width / _height 
         camera.updateProjectionMatrix()
-        renderer.setSize(ref.clientWidth, ref.clientHeight)
+        renderer.setSize(_width, _height)
         render()
     }
 

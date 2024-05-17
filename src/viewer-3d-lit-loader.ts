@@ -35,7 +35,7 @@ export class Viewer3dLitLoader extends LitElement {
   fullContent = false
 
   protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    scene(this.canvas, this.lightColor, this.cubeColor, this.bgColor, this.bgTransparent, this.noAnimation)
+    scene(this.canvas, this.lightColor, this.cubeColor, this.bgColor, this.bgTransparent, this.noAnimation, this.fullContent)
   }
 
   render() {
@@ -49,6 +49,12 @@ export class Viewer3dLitLoader extends LitElement {
       this.width ||= DEFAULT_WIDTH
       this.height ||= DEFAULT_HEIGHT
     }
+
+    // update canvas size on resize
+    window.addEventListener('resize', () => {
+      this.width = this.parentElement?.clientWidth || DEFAULT_WIDTH
+      this.height = this.parentElement?.clientHeight || DEFAULT_HEIGHT
+    })
 
     return html`<canvas width="${this.width}" height="${this.height}"></canvas>`
   }

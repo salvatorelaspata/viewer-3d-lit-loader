@@ -12,21 +12,32 @@
         font-family: monospace;
         margin: 0;
         padding: 0;
+        overflow: hidden;
+      }
+      .absolute {
+        position: absolute; 
+        display: flex;
+        align-items: center;
       }
       .fullpage {
-        width: 100%;
-        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
       }
     </style>
   </head>
-  <body style="width: 100vw; height: 100vh; overflow: hidden;">
-    <div style="position: absolute; align-items: center">
+  <body>
+    <div class="absolute">
       <h1>Viewer 3d Lit Loader</h1>
       <span style="margin-left: 1rem;">fullpage</span>
     </div>
+    <div class="fullpage">
       <viewer-3d-lit-loader
         bgTransparent
         fullContent
       ></viewer-3d-lit-loader>
+    </div>
   </body>
 </html>
